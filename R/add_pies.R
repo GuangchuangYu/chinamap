@@ -46,8 +46,8 @@ add_pies <- function(map, locations, pies, sizes) {
         nn <- rn[i]
         pos <- locations[nn,] %>% unlist
         map %<>% subview(pies[[i]], x=pos[1], y=pos[2],
-                       width  = sizes[[nn]],
-                       height = sizes[[nn]])
+                       width  = sizes[nn],
+                       height = sizes[nn])
     }
     return(map)
 }
@@ -89,7 +89,8 @@ add_pies2 <- function(map, data, cols, color, alpha=1,
         names(ss) <- names(ldf)[i]
         ss
     }) %>% unlist %>% scale_fun
-
+    names(sizes) <- names(ldf)
+    
     locations <- data[, c(2,3)]
     rownames(locations) <- data[,1]
     
