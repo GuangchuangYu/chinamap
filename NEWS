@@ -1,0 +1,9 @@
+CHANGES IN VERSION 0.2.0
+------------------------
+ o get_map_by_country and get_map_by_region <2016-03-05, Sat>
+ o get_map_china <2016-03-05, Sat>
+ o recenter for centering map by a specific longitude <2016-03-05, Sat>
+
+CHANGES IN VERSION 0.1.0
+------------------------
+ o add pies in a map
