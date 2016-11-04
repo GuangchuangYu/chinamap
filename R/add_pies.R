@@ -1,6 +1,6 @@
 ##' pie plot by ggplot2
 ##'
-##' 
+##'
 ##' @title pie2
 ##' @param data data.frame
 ##' @param y y variable
@@ -30,7 +30,7 @@ pie2 <- function(data, y, fill, color, alpha=1) {
 
 ##' add a list of pies to map
 ##'
-##' 
+##'
 ##' @title add_pies
 ##' @param map ggplot map
 ##' @param locations location data.frame
@@ -54,7 +54,7 @@ add_pies <- function(map, locations, pies, sizes) {
 
 ##' add pies to a map by user provided data
 ##'
-##' 
+##'
 ##' @title add_pies2
 ##' @param map map
 ##' @param data data contains column of place, longitude, latitude and other columns for drawing pie
@@ -80,19 +80,25 @@ add_pies2 <- function(map, data, cols, color, alpha=1,
     ## 7     Brazil   47.8667  15.7833 9 0 0
     ## 8   Cambodia  104.9167  11.5500 2 1 0
 
-    type <- value <- NULL    
+    type <- value <- NULL
     ldf <- gather(data, type, value, cols) %>% split(., data[,1])
     pies <- lapply(ldf, function(df) pie2(df, y=~value, fill=~type, color=color, alpha=alpha))
-    
+
     sizes <- lapply(seq_along(ldf), function(i) {
         ss <- summarize(ldf[[i]], size=sum(value))
         names(ss) <- names(ldf)[i]
         ss
     }) %>% unlist %>% scale_fun
     names(sizes) <- names(ldf)
-    
+
     locations <- data[, c(2,3)]
     rownames(locations) <- data[,1]
-    
+
     add_pies(map, locations, pies, sizes)
 }
+
+
+## library(ggforce)
+## df <- gather(data, type, value, cols)
+## p+geom_arc_bar(aes(x0=Longitude, y0=Latitude, r0=0, r=5, amount = value, fill=type, group=Place),
+##                data=df, stat='pie', inherit.aes=F, color=NA) + coord_quickmap()
