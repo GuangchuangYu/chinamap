@@ -1,0 +1,63 @@
+---
+title: "China Map"
+author: "Guangchuang Yu, The University of Hong Kong"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+    toc: true
+  pdf_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{chinamap introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r style, echo=FALSE, results="asis", message=FALSE}
+knitr::opts_chunk$set(tidy = FALSE,
+		   message = FALSE)
+```
+
+
+```{r echo=FALSE, results="hide", message=FALSE}
+library("ggplot2")
+library("chinamap")
+theme_set(theme_minimal())
+```
+
+# China Map
+
+```{r}
+cn <- get_map_china()
+ggplot() + geom_map(aes(long, lat, map_id=id, fill=group), map=cn, data=cn) + coord_map() +
+    theme(legend.position='none')
+
+gd <- get_map_china('广东省')
+ggplot() + geom_map(aes(long, lat, map_id=id), map=gd, data=gd, fill='steelblue', size=1) + coord_map()
+
+tw <- get_map_china('台湾省')
+ggplot() + geom_map(aes(long, lat, map_id=id), map=tw, data=tw, fill='firebrick', size=1) + coord_map()
+
+
+hk <- get_map_china('香港特别行政区')
+ggplot() + geom_map(aes(long, lat, map_id=id), map=hk, data=hk, fill='slateblue', size=1) + coord_map()
+
+bj <- get_map_china('北京市')
+ggplot() + geom_map(aes(long, lat, map_id=id), map=bj, data=bj, fill='red', size=1) + coord_map()
+```
+
+
+
+
+
+
+# Session info
+
+Here is the output of `sessionInfo()` on the system on which this document was compiled:
+```{r echo=FALSE}
+sessionInfo()
+```
+

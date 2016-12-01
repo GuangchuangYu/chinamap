@@ -7,6 +7,12 @@ all: rd check clean
 rd:
 	Rscript -e 'roxygen2::roxygenise(".")'
 
+
+vignette:
+	cd vignettes;\
+	Rscript -e 'library(sp); rmarkdown::render("chinamap.Rmd")';\
+	mv chinamap.html ../docs/index.html
+
 build:
 	cd ..;\
 	R CMD build $(PKGSRC)

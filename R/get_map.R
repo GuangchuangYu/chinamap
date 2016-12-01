@@ -9,7 +9,7 @@
 ##' @export
 ##' @author ygc
 get_map_china <- function(province='all') {
-    tryCatch(data("china", package='mapr'))
+    tryCatch(data("china", package='chinamap'))
     china <- get("china", envir=.GlobalEnv)
 
     ## n <- sapply(china@polygons, function(x) nrow(x@Polygons[[1]]@coords))
@@ -19,7 +19,8 @@ get_map_china <- function(province='all') {
     ## colnames(coords) <- c("long", "lat")
 
     cn <- fortify(china)
-    locations <- iconv(china$NAME, from='GBK')
+    ## locations <- iconv(china$NAME, from='GBK')
+    locations = china$NAME
     ## coords$province <- rep(locations, times=n)
     cn$province=locations[as.numeric(cn$id)+1]
 
