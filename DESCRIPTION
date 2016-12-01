@@ -15,7 +15,8 @@ Imports:
     ggplot2
 Suggests:
     knitr,
-    prettydoc
+    prettydoc,
+    sp
 VignetteBuilder: knitr
 License: Artistic-2.0
 RoxygenNote: 5.0.1
