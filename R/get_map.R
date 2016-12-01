@@ -5,6 +5,7 @@
 ##' @param province selected province(s) or 'all'
 ##' @return map data of China, in data.frame
 ##' @importFrom ggplot2 fortify
+##' @importFrom utils data
 ##' @export
 ##' @author ygc
 get_map_china <- function(province='all') {
@@ -21,7 +22,7 @@ get_map_china <- function(province='all') {
     locations <- iconv(china$NAME, from='GBK')
     ## coords$province <- rep(locations, times=n)
     cn$province=locations[as.numeric(cn$id)+1]
-    
+
     if (province == 'all') {
         res <- cn
     } else {
@@ -36,21 +37,22 @@ get_map_china <- function(province='all') {
 
 ##' extract map data of selected country from 'world' map
 ##'
-##' 
+##'
 ##' @title get_map_by_country
 ##' @param country selected country or countries
 ##' @return map data in data.frame
 ##' @export
 ##' @author ygc
 get_map_by_country <- function(country) {
+    region = NULL
     wdf <- map_data('world')
     subset(wdf, region %in% country)
 }
 
 ##' extract map data of selected region(s) from 'world' map
 ##'
-##' 
-##' @title get_map_by_region 
+##'
+##' @title get_map_by_region
 ##' @param region selected region(s)
 ##' @return map data in data.frame
 ##' @importFrom ggplot2 map_data
@@ -60,8 +62,3 @@ get_map_by_region <- function(region) {
     wdf <- map_data('world')
     wdf[wdf$subregion %in% region,]
 }
-
-
-
-
-

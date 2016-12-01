@@ -1,6 +1,6 @@
-Package: mapr
+Package: chinamap
 Type: Package
-Title: map tools in R
+Title: China Map data
 Version: 0.2.0
 Authors@R: c(person(given = "Guangchuang", family = "Yu",
 	   	    email = "guangchuangyu@gmail.com",
@@ -8,18 +8,13 @@ Authors@R: c(person(given = "Guangchuang", family = "Yu",
 		    )
 Author: Guangchuang Yu <guangchuangyu@gmail.com>
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
-Description: map tools
+Description: China Map.
 Depends:
     R (>= 3.2.0)
 Imports:
-    dplyr,
-    ggplot2,
-    ggtree,
-    tidyr
+    ggplot2
 Suggests:
-    clusterProfiler,
-    knitr,
-    BiocStyle
+    knitr
 VignetteBuilder: knitr
 License: Artistic-2.0
 RoxygenNote: 5.0.1
